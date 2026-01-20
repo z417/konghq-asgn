@@ -1,7 +1,7 @@
 import { test } from '@src/kong-manager/fixtures';
 
 export function useGoToWorkspaces() {
-    test.beforeAll(async ({ kongManagerHandler }) => {
+    test.beforeAll(async ({ kmUIHandler }) => {
     });
 }
 

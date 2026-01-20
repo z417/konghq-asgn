@@ -1,7 +1,7 @@
 import {
-    PlaywrightWorkerArgs,
-    PlaywrightWorkerOptions,
-    WorkerFixture
+    type PlaywrightWorkerArgs,
+    type PlaywrightWorkerOptions,
+    type WorkerFixture
 } from '@playwright/test';
 import { getCurrnentTimestamp } from '../helpers/util-helper';
 

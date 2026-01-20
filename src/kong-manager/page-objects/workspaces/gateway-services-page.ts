@@ -1,4 +1,4 @@
-import { Locator, Page } from 'playwright';
+import { type Locator, type Page } from '@playwright/test';
 import { SidebarPage } from './sidebar-page';
 
 export class GatewayServicesPage extends SidebarPage {

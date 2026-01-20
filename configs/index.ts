@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig } from '@playwright/test';
+import { type PlaywrightTestConfig } from '@playwright/test';
 import { kongManagerConfig } from './kong-manager';
 import { konnectConfig } from './konnect';
 

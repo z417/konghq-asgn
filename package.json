@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:head:manager:sanity": "cross-env PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev TEST_SCOPE=sanity playwright test --headed --project=manager-sanity-chrome example.spec.ts",
-    "test:manager:sanity": "cross-env CI=true PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev TEST_SCOPE=sanity playwright test --project=manager-sanity-chrome example.spec.ts",
-    "test:manager": "PROJECT_NAME=manager playwright test",
-    "test:manager:chrome": "PROJECT_NAME=manager playwright test --project=manager-chrome-desktop",
+    "test:head:manager:chrome": "cross-env PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --headed --project=kmanager-chromium ",
+    "test:manager:chrome": "cross-env CI=true PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --project=kmanager-chromium",
     "test:manager:mobile": "PROJECT_NAME=manager playwright test --grep @mobile",
     "test:connect": "PROJECT_NAME=connect playwright test",
     "test:connect:fast": "PROJECT_NAME=connect playwright test --grep @fast",
@@ -17,7 +15,7 @@
     "test:ui:manager": "PROJECT_NAME=manager playwright test --ui",
     "test:ui:connect": "PROJECT_NAME=connect playwright test --ui",
     "test:debug:manager": "PROJECT_NAME=manager playwright test --debug",
-    "report:merge": "npx playwright merge-reports --reporter html ./reports/e2e",
+    "report:merge": "npx playwright merge-reports --reporter html ./blob-report",
     "report": "playwright show-report reports/html"
   },
   "keywords": [],

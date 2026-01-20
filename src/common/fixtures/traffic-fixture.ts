@@ -1,6 +1,6 @@
 import { managerEnv } from '@configs/kong-manager/env';
-import { TestFixture } from '@playwright/test';
-import { sendGatewayRequest, TrafficOptions, TrafficResponse } from '../helpers/traffic-helper';
+import { type TestFixture } from '@playwright/test';
+import { sendGatewayRequest, type TrafficOptions, type TrafficResponse } from '../helpers/traffic-helper';
 
 export type GatewayTraffic = (path: string, options: TrafficOptions) => Promise<TrafficResponse>;
 

@@ -1,8 +1,8 @@
-import { Locator, Page } from 'playwright';
+import { type Locator, type Page } from '@playwright/test';
 import { BasePage } from '../base-page';
 
 export class WorkspacesPage extends BasePage {
-  private $newWorkspace: Locator;
+  private $newWorkspaceBtn: Locator;
   private $filterWorkspaces: Locator;
   private $tableOfWorkspace: Locator;
   // TODO: more locators
@@ -13,14 +13,14 @@ export class WorkspacesPage extends BasePage {
   }
 
   initLocators(): void {
-    this.$newWorkspace = this.page.getByTestId('entity-button');
+    this.$newWorkspaceBtn = this.page.getByTestId('entity-button');
     this.$filterWorkspaces = this.page.locator('div.k-input.workspace-filter');
     this.$tableOfWorkspace = this.page.locator('.table.has-hover.is-clickable');
   }
   getFilterWorkspaces(): Locator {
     return this.$filterWorkspaces;
   }
-  getWorkspace(by: string | number): Locator {
+  getWorkspace(by?: string | number): Locator {
     const tableWithData = this.$tableOfWorkspace.locator('tbody tr');
     switch (typeof by) {
       case 'number':
@@ -33,8 +33,8 @@ export class WorkspacesPage extends BasePage {
         return tableWithData.first();
     }
   }
-  getNewWorkspace(): Locator {
-    return this.$newWorkspace;
+  getNewWorkspaceBtn(): Locator {
+    return this.$newWorkspaceBtn;
   }
   getInfoByTitle(title: string): Locator {
     return this.page.locator('div.metric-title')

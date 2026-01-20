@@ -96,14 +96,4 @@ export const managerEnv = {
   // Directly access the active environment's config
   current: environments[currentEnvName],
   name: currentEnvName,
-
-  // Shared API Endpoint constants
-  api: {
-    endpoints: {
-      services: '/services',
-      routes: '/routes',
-      plugins: '/plugins',
-      consumers: '/consumers',
-    },
-  },
 };

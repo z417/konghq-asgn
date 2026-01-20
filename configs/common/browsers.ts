@@ -1,4 +1,4 @@
-import { devices, Project } from '@playwright/test';
+import { devices, type Project } from '@playwright/test';
 
 /**
  * Define the specific type for browser configuration to ensure type safety.
