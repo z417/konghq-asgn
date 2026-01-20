@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "Node",
+        "allowJs": true,
+        "types": [
+            "node"
+        ],
+        "rootDir": "./",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@configs/*": [
+                "configs/*"
+            ],
+            "@src/*": [
+                "src/*"
+            ],
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ],
+    "include": [
+        "playwright.config.ts",
+        "configs/**/*",
+        "src/**/*"
+    ],
+}

@@ -1,0 +1,41 @@
+{
+  "name": "konghq-asgn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:head:manager:sanity": "cross-env PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev TEST_SCOPE=sanity playwright test --headed --project=manager-sanity-chrome example.spec.ts",
+    "test:manager:sanity": "cross-env CI=true PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev TEST_SCOPE=sanity playwright test --project=manager-sanity-chrome example.spec.ts",
+    "test:manager": "PROJECT_NAME=manager playwright test",
+    "test:manager:chrome": "PROJECT_NAME=manager playwright test --project=manager-chrome-desktop",
+    "test:manager:mobile": "PROJECT_NAME=manager playwright test --grep @mobile",
+    "test:connect": "PROJECT_NAME=connect playwright test",
+    "test:connect:fast": "PROJECT_NAME=connect playwright test --grep @fast",
+    "test:all": "npm run test:manager && npm run test:connect",
+    "test:manager:staging": "PROJECT_NAME=manager BASE_URL=https://manager.staging.com playwright test",
+    "test:connect:prod": "PROJECT_NAME=connect BASE_URL=https://connect.production.com playwright test",
+    "test:ui:manager": "PROJECT_NAME=manager playwright test --ui",
+    "test:ui:connect": "PROJECT_NAME=connect playwright test --ui",
+    "test:debug:manager": "PROJECT_NAME=manager playwright test --debug",
+    "report:merge": "npx playwright merge-reports --reporter html ./reports/e2e",
+    "report": "playwright show-report reports/html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.9",
+    "@types/pg": "^8.16.0",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "pg": "^8.17.1"
+  }
+}
