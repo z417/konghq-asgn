@@ -19,7 +19,15 @@ const commonDeviceSettings: BrowserOptions = {
   {
     launchOptions: {
       // Optimization for headless execution in Docker/CI environments
-      args: ['--disable-dev-shm-usage', '--no-sandbox', '--disable-gpu'],
+      args: [
+        '--disable-dev-shm-usage',
+        '--no-sandbox',
+        '--disable-gpu',
+        '--disable-features=Translate',
+        '--disable-translate',
+        '--disable-infobars',
+        '--no-first-run',
+      ],
     }
   }),
   /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */

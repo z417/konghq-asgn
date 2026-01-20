@@ -13,6 +13,7 @@ export class WorkspacesPage extends BasePage {
   }
 
   initLocators(): void {
+    super.initLocators();
     this.$newWorkspaceBtn = this.page.getByTestId('entity-button');
     this.$filterWorkspaces = this.page.locator('div.k-input.workspace-filter');
     this.$tableOfWorkspace = this.page.locator('.table.has-hover.is-clickable');

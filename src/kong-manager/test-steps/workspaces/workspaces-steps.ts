@@ -8,17 +8,28 @@ export class WorkspacesSteps {
     constructor(workspacesPage: WorkspacesPage) {
         this.workspacesPage = workspacesPage;
     }
-
     async navToWorkspaces(): Promise<void> {
-        await test.step('nav to workspaces', async () => {
+        await test.step('loading done', async () => {
+            await Promise.all([
+                this.workspacesPage.getLoading()
+                    .waitFor(
+                        { state: 'hidden' }
+                    ),
+                this.workspacesPage.getSiderbarContentContainer()
+                    .waitFor(
+                        { state: 'visible' }
+                    )
+            ])
+        });
+        await test.step('click sidebar of Workspaces', async () => {
             await this.workspacesPage.getWorkspacesSidebar().click();
             await expect(this.workspacesPage.getPage()).toHaveURL(/.*workspaces/);
             await expect(await this.workspacesPage.getWorkspace().count()).toBeGreaterThanOrEqual(1);
-        })
+        });
     }
 
-    async navToOverview(by: string | number): Promise<void> {
-        await test.step(`nav to overview of workspace ${by}`, async () => {
+    async navToOverview(by?: string | number): Promise<void> {
+        await test.step(`click workspace item: ${by}`, async () => {
             await this.workspacesPage.getWorkspace(by).click();
             await expect(this.workspacesPage.getPage()).toHaveURL(/.*\/overview/);
         })

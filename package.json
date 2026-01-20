@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:head:manager:chrome": "cross-env PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --headed --project=kmanager-chromium ",
+    "test:head:manager:chrome": "cross-env PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --headed --project=kmanager-chromium",
     "test:manager:chrome": "cross-env CI=true PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --project=kmanager-chromium",
     "test:manager:mobile": "PROJECT_NAME=manager playwright test --grep @mobile",
     "test:connect": "PROJECT_NAME=connect playwright test",

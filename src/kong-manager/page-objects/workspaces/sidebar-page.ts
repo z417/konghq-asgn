@@ -12,6 +12,7 @@ export class SidebarPage extends BasePage {
         this.initLocators();
     }
     initLocators(): void {
+        super.initLocators();
         this.$overview = this.page.getByTestId('sidebar-item-overview');
         this.$gatewayServices = this.page.getByTestId('sidebar-item-gateway-services')
         this.$routes = this.page.getByTestId('sidebar-item-routes')

@@ -13,6 +13,7 @@ export class OverviewPage extends SidebarPage {
   }
 
   initLocators(): void {
+    super.initLocators();
     this.$onboardingCard = this.page.locator('div.k-card.onboarding-card');
     this.$actionBth = this.page.getByTestId('action-button');
     this.$dismissBtn = this.page.getByTestId('dismiss-button');

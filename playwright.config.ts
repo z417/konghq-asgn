@@ -37,7 +37,7 @@ const config: PlaywrightTestConfig = {
   // config for browser
   use: {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry', // 'on-first-retry',
+    trace: 'on', // 'on-first-retry',
     screenshot: 'only-on-failure',
     // Toggles bypassing Content-Security-Policy.
     bypassCSP: true,
@@ -47,7 +47,7 @@ const config: PlaywrightTestConfig = {
     ignoreHTTPSErrors: true,
     // Emulates `'prefers-colors-scheme'` media feature.
     colorScheme: 'dark',
-    video: 'on',
+    video: 'off',
   },
   /* Run your local dev server before starting the tests */
   // webServer: {

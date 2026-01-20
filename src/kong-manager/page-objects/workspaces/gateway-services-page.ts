@@ -28,6 +28,7 @@ export class GatewayServicesPage extends SidebarPage {
   }
 
   initLocators(): void {
+    super.initLocators();
     this.$newGatewayServiceBtn = this.page.getByTestId('toolbar-add-gateway-service');
     this.$tableOfGatewayServices = this.page.getByTestId('.table.has-hover.is-clickable');
     this.$createServiceContainer = this.page.locator('.main-content > div.create-service');

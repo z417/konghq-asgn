@@ -4,14 +4,13 @@ import { createUiHandler, type KongManagerUIHandler } from '@src/kong-manager/ui
 
 export const kongManagerUIHandler: TestFixture<KongManagerUIHandler, { page: Page }>
     = async ({ page }, use) => {
-        const handler = createUiHandler(page);
-        await use(handler);
+        await page.goto('/', { waitUntil: 'load' });
+        await use(createUiHandler(page));
     };
 
 export const kongManagerApiHandler: TestFixture<KongManagerApiHandler, { request: APIRequestContext }>
     = async ({ request }, use) => {
-        const handler = createApiHandler(request);
-        await use(handler);
+        await use(createApiHandler(request));
         await request.dispose();
     };
 
