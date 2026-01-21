@@ -1,9 +1,9 @@
-import { expect, test } from '@src/kong-manager/fixtures';
 import { WorkspacesPage } from "@src/kong-manager/e2e/page-objects/workspaces/workspaces-page";
+import { expect, test } from '@src/kong-manager/fixtures';
 
 export class WorkspacesSteps {
     // TODO: more steps
-    private readonly workspacesPage: WorkspacesPage;
+    readonly workspacesPage: WorkspacesPage;
 
     constructor(workspacesPage: WorkspacesPage) {
         this.workspacesPage = workspacesPage;
@@ -24,7 +24,7 @@ export class WorkspacesSteps {
         await test.step('click sidebar of Workspaces', async () => {
             await this.workspacesPage.getWorkspacesSidebar().click();
             await expect(this.workspacesPage.getPage()).toHaveURL(/.*workspaces/);
-            await expect(await this.workspacesPage.getWorkspace().count()).toBeGreaterThanOrEqual(1);
+            expect(await this.workspacesPage.getWorkspace().count()).toBeGreaterThanOrEqual(1);
         });
     }
 

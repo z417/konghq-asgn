@@ -65,9 +65,7 @@ export const commonBrowsers: Record<'chromium' | 'firefox' | 'webkit', BrowserOp
     {
       launchOptions: {
         // Optimization for headless execution in Docker/CI environments
-        args: [
-          '--no-sandbox',
-        ],
+        args: [],
       }
     }),
   },

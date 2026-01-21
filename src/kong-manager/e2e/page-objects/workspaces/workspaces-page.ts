@@ -57,4 +57,8 @@ export class WorkspacesPage extends BasePage {
   getAPIRequestsInfo(): Locator {
     return this.getInfoByTitle('API Requests');
   }
+
+  async getWorkspaceRowCount(): Promise<number> {
+    return await this.$tableOfWorkspace.locator('tbody tr').count();
+  }
 }
