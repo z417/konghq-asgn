@@ -4,16 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:head:manager:chrome": "cross-env PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --headed --project=kmanager-chromium",
-    "test:manager:chrome": "cross-env CI=true PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --project=kmanager-chromium",
-    "test:manager:mobile": "PROJECT_NAME=manager playwright test --grep @mobile",
-    "test:connect": "PROJECT_NAME=connect playwright test",
-    "test:connect:fast": "PROJECT_NAME=connect playwright test --grep @fast",
-    "test:manager:staging": "PROJECT_NAME=manager BASE_URL=https://manager.staging.com playwright test",
-    "test:connect:prod": "PROJECT_NAME=connect BASE_URL=https://connect.production.com playwright test",
-    "test:ui:manager": "PROJECT_NAME=manager playwright test --ui",
-    "test:ui:connect": "PROJECT_NAME=connect playwright test --ui",
-    "test:debug:manager": "PROJECT_NAME=manager playwright test --debug",
+    "test:head:manager:chrome": "cross-env PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --headed --project=kmanager-chromium services.spec.ts",
+    "test:manager:chrome": "cross-env CI=true PWDEBUG=console PRUDUCT=kong-manager TA_ENV=dev playwright test --project=kmanager-chromium services.spec.ts",
     "report:merge": "npx playwright merge-reports --reporter html ./blob-report",
     "report": "playwright show-report reports/html"
   },

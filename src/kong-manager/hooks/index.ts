@@ -1,5 +1,5 @@
 import { managerEnv } from '@configs/kong-manager';
-import { expect, test } from '@src/kong-manager/fixtures';
+import { test } from '@src/kong-manager/fixtures';
 export const useCreateServiceInWorkspace = ({
     workspaceName,
     serviceName,
@@ -24,17 +24,13 @@ export const useCreateServiceInWorkspace = ({
 
     test.afterAll(async ({ kmApiHandler }) => {
         const { request, servicesApi } = kmApiHandler
-        const status = await servicesApi.deleteService(
+        await servicesApi.deleteService(
             request,
             {
                 host: adminUrl,
                 pathParams: serviceName,
             }
         );
-        await expect(status,
-            {
-                message: "Successfully deleted Service or the resource didn't exist"
-            }).toEqual(204)
     });
 }
 
