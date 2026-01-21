@@ -15,21 +15,6 @@ const COMMON_VIEWPORT = { width: 1920, height: 1080 };
 const commonDeviceSettings: BrowserOptions = {
   viewport: COMMON_VIEWPORT,
   ignoreHTTPSErrors: true,
-  ...(!!process.env.CI &&
-  {
-    launchOptions: {
-      // Optimization for headless execution in Docker/CI environments
-      args: [
-        '--disable-dev-shm-usage',
-        '--no-sandbox',
-        '--disable-gpu',
-        '--disable-features=Translate',
-        '--disable-translate',
-        '--disable-infobars',
-        '--no-first-run',
-      ],
-    }
-  }),
   /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
   actionTimeout: 15 * 1000,
   navigationTimeout: 60000,
@@ -43,14 +28,48 @@ export const commonBrowsers: Record<'chromium' | 'firefox' | 'webkit', BrowserOp
   chromium: {
     ...devices['Desktop Chrome'],
     ...commonDeviceSettings,
+    ...(!!process.env.CI &&
+    {
+      launchOptions: {
+        // Optimization for headless execution in Docker/CI environments
+        args: [
+          '--disable-dev-shm-usage',
+          '--no-sandbox',
+          '--disable-gpu',
+          '--disable-features=Translate',
+          '--disable-translate',
+          '--disable-infobars',
+          '--no-first-run',
+        ],
+      }
+    }),
   },
   firefox: {
     ...devices['Desktop Firefox'],
     ...commonDeviceSettings,
+    ...(!!process.env.CI &&
+    {
+      launchOptions: {
+        // Optimization for headless execution in Docker/CI environments
+        args: [
+          '--no-sandbox',
+          '--disable-gpu'
+        ],
+      }
+    }),
   },
   webkit: {
     ...devices['Desktop Safari'],
     ...commonDeviceSettings,
+    ...(!!process.env.CI &&
+    {
+      launchOptions: {
+        // Optimization for headless execution in Docker/CI environments
+        args: [
+          '--no-sandbox',
+        ],
+      }
+    }),
   },
 };
 
