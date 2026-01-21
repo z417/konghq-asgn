@@ -2,8 +2,9 @@ import { type Locator, type Page } from '@playwright/test';
 import { SidebarPage } from './sidebar-page';
 
 export class GatewayServicesPage extends SidebarPage {
-  private $newGatewayServiceBtn: Locator;
+  private $emptyTableState: Locator;
   private $tableOfGatewayServices: Locator;
+  private $servicesContainer: Locator;
   private $createServiceContainer: Locator;
   private $showServiceContainer: Locator;
   private $fullUrlRadio: Locator;
@@ -19,7 +20,6 @@ export class GatewayServicesPage extends SidebarPage {
   private $breadcrumbsItemActiveService: Locator;
   private $statusBadge: Locator;
   private $vtabContainer: Locator;
-  private $emptyStateAction: Locator;
   // TODO: more locators
 
   constructor(page: Page) {
@@ -29,32 +29,41 @@ export class GatewayServicesPage extends SidebarPage {
 
   initLocators(): void {
     super.initLocators();
-    this.$newGatewayServiceBtn = this.page.getByTestId('toolbar-add-gateway-service');
+    this.$emptyTableState = this.page.getByTestId('table-empty-state');
     this.$tableOfGatewayServices = this.page.getByTestId('.table.has-hover.is-clickable');
+    // belongs to servicesContainer
+    this.$servicesContainer = this.page.locator('.main-content > div.services');
     this.$createServiceContainer = this.page.locator('.main-content > div.create-service');
     this.$showServiceContainer = this.page.locator('.main-content > div.show-service');
+    // belongs to createServiceContainer
     this.$fullUrlRadio = this.$createServiceContainer.getByTestId('gateway-service-url-radio-label');
     this.$protocolRadio = this.$createServiceContainer.getByTestId('gateway-service-protocol-radio-label');
     this.$fullUrlInput = this.$createServiceContainer.getByTestId('gateway-service-url-input');
-    // createServiceContainer
     this.$advancedFieldsCollapse = this.$createServiceContainer.getByTestId('advanced-fields-collapse');
     this.$gatewayServiceNameInput = this.$createServiceContainer.getByTestId('gateway-service-name-input');
     this.$addTagsCollapse = this.$createServiceContainer.getByTestId('tags-collapse');
     this.$viewConfigurationBtn = this.$createServiceContainer.getByTestId('service-create-form-view-configuration');
     this.$cancelBtn = this.$createServiceContainer.getByTestId('service-create-form-cancel');
     this.$saveBtn = this.$createServiceContainer.getByTestId('service-create-form-submit');
-    // showServiceContainer
+    // belongs to showServiceContainer
     this.$breadcrumbsItemGatewayService = this.$showServiceContainer.locator('a.breadcrumbs-item[title="Gateway Services"]')
     this.$breadcrumbsItemActiveService = this.$showServiceContainer.locator('a.breadcrumbs-item[aria-current="page"]')
     this.$statusBadge = this.$showServiceContainer.getByTestId('status');
     this.$vtabContainer = this.$showServiceContainer.getByTestId('vtab-container');
-    this.$emptyStateAction = this.$showServiceContainer.getByTestId('empty-state-action');
   }
-  getNewGatewayServiceBtn(): Locator {
-    return this.$newGatewayServiceBtn;
+  async getNewGatewayServiceBtn(): Promise<Locator> {
+    const emptyState = await this.elementExists(this.$emptyTableState)
+    if (emptyState) {
+      return this.$emptyTableState.getByTestId('empty-state-action');
+    }
+    return this.$servicesContainer.getByTestId('toolbar-add-gateway-service');
   }
 
-  getfullUrlRadio(): Locator {
+  getCreateServiceContainer(): Locator {
+    return this.$createServiceContainer;
+  }
+
+  getFullUrlRadio(): Locator {
     return this.$fullUrlRadio;
   }
 
@@ -104,19 +113,13 @@ export class GatewayServicesPage extends SidebarPage {
         return this.$vtabContainer.locator('#service-documents');
     }
   }
-  getNewRouteBtn(): Locator {
-    return this.$emptyStateAction;
-  }
-  getNewPluginBtn(): Locator {
-    return this.$emptyStateAction;
-  }
   getGatewayService(by: string | number): Locator {
     const tableWithData = this.$tableOfGatewayServices.locator('tbody tr');
     switch (typeof by) {
       case 'string':
         return tableWithData.getByTestId(by);
       case 'number':
-        return tableWithData.locator(`tbody tr:nth-child(${by + 1})`);
+        return tableWithData.locator(`tbody tr[tabindex="${by}"]`);
       default:
         return tableWithData.first();
     }

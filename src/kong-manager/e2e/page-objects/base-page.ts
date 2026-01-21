@@ -85,4 +85,10 @@ export class BasePage {
   getKongponentsToasterContainer(): Locator {
     return this.$kongponentsToasterContainer;
   }
+  async elementExists(ele: Locator): Promise<boolean> {
+    try {
+      await ele.waitFor({ state: 'visible' })
+      return true
+    } catch { return false }
+  }
 }

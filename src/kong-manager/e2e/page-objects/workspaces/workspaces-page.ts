@@ -2,6 +2,10 @@ import { type Locator, type Page } from '@playwright/test';
 import { BasePage } from '../base-page';
 
 export class WorkspacesPage extends BasePage {
+  private $workspaces: Locator;
+  private $sidebarOverview: Locator;
+  private $sidebarGatewayServices: Locator;
+  private $sidebarRoutes: Locator;
   private $newWorkspaceBtn: Locator;
   private $filterWorkspaces: Locator;
   private $tableOfWorkspace: Locator;
@@ -14,9 +18,26 @@ export class WorkspacesPage extends BasePage {
 
   initLocators(): void {
     super.initLocators();
+    this.$workspaces = this.page.locator('.workspace-overview.page');
+    this.$sidebarOverview = this.page.getByTestId('sidebar-item-overview');
+    this.$sidebarGatewayServices = this.page.getByTestId('sidebar-item-gateway-services');
+    this.$sidebarRoutes = this.page.getByTestId('sidebar-item-routes');
     this.$newWorkspaceBtn = this.page.getByTestId('entity-button');
     this.$filterWorkspaces = this.page.locator('div.k-input.workspace-filter');
     this.$tableOfWorkspace = this.page.locator('.table.has-hover.is-clickable');
+  }
+  getSidebar: {
+    overview: () => Locator,
+    gatewayServices: () => Locator,
+    routes: () => Locator,
+  } = {
+      overview: (): Locator => this.$sidebarOverview,
+      gatewayServices: (): Locator => this.$sidebarGatewayServices,
+      routes: (): Locator => this.$sidebarRoutes,
+    }
+
+  getWorkspaces(): Locator {
+    return this.$workspaces;
   }
   getFilterWorkspaces(): Locator {
     return this.$filterWorkspaces;

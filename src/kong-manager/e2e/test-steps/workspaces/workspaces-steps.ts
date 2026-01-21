@@ -29,9 +29,26 @@ export class WorkspacesSteps {
     }
 
     async navToOverview(by?: string | number): Promise<void> {
-        await test.step(`click workspace item: ${by}`, async () => {
-            await this.workspacesPage.getWorkspace(by).click();
-            await expect(this.workspacesPage.getPage()).toHaveURL(/.*\/overview/);
+        if (this.workspacesPage.elementExists(this.workspacesPage.getWorkspaces())) {
+            await test.step(`click workspace item: ${by}`, async () => {
+                await this.workspacesPage.getWorkspace(by).click();
+            })
+        } else {
+            await test.step(`click Overview tab`, async () => {
+                await this.workspacesPage.getSidebar.overview().click();
+            })
+        } await expect(this.workspacesPage.getPage()).toHaveURL(/.*\/overview/);
+    }
+    async navToGatewayServices(): Promise<void> {
+        await test.step(`click Gateway Services tab`, async () => {
+            await this.workspacesPage.getSidebar.gatewayServices().click();
+            await expect(this.workspacesPage.getPage()).toHaveURL(/.*\/services/);
+        })
+    }
+    async navToRoutes(): Promise<void> {
+        await test.step(`click Routes tab`, async () => {
+            await this.workspacesPage.getSidebar.routes().click();
+            await expect(this.workspacesPage.getPage()).toHaveURL(/.*\/routes/);
         })
     }
 }

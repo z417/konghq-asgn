@@ -18,11 +18,17 @@ export class OverviewPage extends SidebarPage {
     this.$actionBth = this.page.getByTestId('action-button');
     this.$dismissBtn = this.page.getByTestId('dismiss-button');
   }
+  getServiceCard(): Locator {
+    return this.$onboardingCard.filter({ hasText: 'Add a Gateway Service' });
+  }
   getPluginCard(): Locator {
     return this.$onboardingCard.filter({ hasText: 'Add a Plugin' });
   }
   getConsumerCard(): Locator {
     return this.$onboardingCard.filter({ hasText: 'Add a Consumer' });
+  }
+  getAddGatewayServiceBtn(): Locator {
+    return this.getServiceCard().filter({ has: this.$actionBth });
   }
   getAddPluginBtn(): Locator {
     return this.getPluginCard().filter({ has: this.$actionBth });
