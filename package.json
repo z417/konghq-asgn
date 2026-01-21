@@ -9,7 +9,6 @@
     "test:manager:mobile": "PROJECT_NAME=manager playwright test --grep @mobile",
     "test:connect": "PROJECT_NAME=connect playwright test",
     "test:connect:fast": "PROJECT_NAME=connect playwright test --grep @fast",
-    "test:all": "npm run test:manager && npm run test:connect",
     "test:manager:staging": "PROJECT_NAME=manager BASE_URL=https://manager.staging.com playwright test",
     "test:connect:prod": "PROJECT_NAME=connect BASE_URL=https://connect.production.com playwright test",
     "test:ui:manager": "PROJECT_NAME=manager playwright test --ui",

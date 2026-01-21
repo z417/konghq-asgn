@@ -1,9 +1,9 @@
 import { type Page } from "@playwright/test";
-import { GatewayServicesPage } from "@src/kong-manager/page-objects/workspaces/gateway-services-page";
-import { OverviewPage } from "@src/kong-manager/page-objects/workspaces/overview-page";
-import { WorkspacesPage } from "@src/kong-manager/page-objects/workspaces/workspaces-page";
-import { OverviewSteps } from "@src/kong-manager/test-steps/workspaces/overview-steps";
-import { WorkspacesSteps } from "@src/kong-manager/test-steps/workspaces/workspaces-steps";
+import { GatewayServicesPage } from "@src/kong-manager/e2e/page-objects/workspaces/gateway-services-page";
+import { OverviewPage } from "@src/kong-manager/e2e/page-objects/workspaces/overview-page";
+import { WorkspacesPage } from "@src/kong-manager/e2e/page-objects/workspaces/workspaces-page";
+import { OverviewSteps } from "@src/kong-manager/e2e/test-steps/workspaces/overview-steps";
+import { WorkspacesSteps } from "@src/kong-manager/e2e/test-steps/workspaces/workspaces-steps";
 
 export interface KongManagerUIHandler {
     page?: Page;

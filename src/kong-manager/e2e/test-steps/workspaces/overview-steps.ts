@@ -1,5 +1,5 @@
 import { test } from '@src/kong-manager/fixtures';
-import { OverviewPage } from "@src/kong-manager/page-objects/workspaces/overview-page";
+import { OverviewPage } from "@src/kong-manager/e2e/page-objects/workspaces/overview-page";
 
 export class OverviewSteps {
     // TODO: more steps

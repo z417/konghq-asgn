@@ -1,5 +1,5 @@
 import { expect, test } from '@src/kong-manager/fixtures';
-import { WorkspacesPage } from "@src/kong-manager/page-objects/workspaces/workspaces-page";
+import { WorkspacesPage } from "@src/kong-manager/e2e/page-objects/workspaces/workspaces-page";
 
 export class WorkspacesSteps {
     // TODO: more steps

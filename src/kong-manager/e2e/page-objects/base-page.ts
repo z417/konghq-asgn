@@ -85,15 +85,4 @@ export class BasePage {
   getKongponentsToasterContainer(): Locator {
     return this.$kongponentsToasterContainer;
   }
-  /**
-   * for debug if the given locator actually exists
-   * @param locator target locator
-   */
-  async highlight(locator: Locator): Promise<void> {
-    await locator.highlight();
-  }
-
-  async debugLocatorIsVisible(locator: Locator): Promise<void> {
-    console.log(`--------`, await locator.isVisible());
-  }
 }
