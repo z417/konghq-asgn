@@ -1,8 +1,14 @@
 import { managerEnv } from '@configs/kong-manager';
 import { expect, test } from '@src/kong-manager/fixtures';
+import { useCreateServiceInWorkspace } from '@src/kong-manager/hooks';
 
 test.describe('Kong Manager: Routes Management', () => {
   const adminUrl = managerEnv.current.adminUrl;
+  useCreateServiceInWorkspace({
+    workspaceName: 'default',
+    serviceName: 'RoutesTestService',
+    url: 'https://httpbin.konghq.com'
+  });
 
   test('should create a route and verify in control plane',
     { tag: '@sanity @function' },
@@ -25,7 +31,7 @@ test.describe('Kong Manager: Routes Management', () => {
         request,
         {
           host: adminUrl,
-          pathParams: { name: nameOrPath.replaceAll('/', '') }
+          pathParams: nameOrPath.replaceAll('/', '')
         }
       )
       expect(resp.name).toEqual(nameOrPath.replaceAll('/', ''));

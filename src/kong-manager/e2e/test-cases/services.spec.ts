@@ -23,7 +23,7 @@ test.describe('Kong Manager: Services Management', () => {
         request,
         {
           host: adminUrl,
-          pathParams: { name }
+          pathParams: name,
         }
       )
       expect(resp.name).toEqual(name);
